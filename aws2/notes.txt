@@ -1,0 +1,2 @@
+hello dari ip-172-31-5-132
+This command did not work because I already permanently terminated the instance and the S3 bucket.
