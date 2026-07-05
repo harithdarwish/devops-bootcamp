@@ -1,0 +1,12 @@
+[
+    [
+        "nat-00acf32d144b5dbef",
+        "available"
+    ]
+]
+[
+    "18.139.134.187"
+]
+[
+    "957396245410.dkr.ecr.ap-southeast-1.amazonaws.com/devops-bootcamp/harith"
+]
