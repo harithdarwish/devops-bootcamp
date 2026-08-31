@@ -16,18 +16,17 @@ resource "aws_subnet" "my_subnet" {
   }
 }
 
-#Additional subnet
-/*
-resource "aws_subnet" "my_subnet_2"{
+#Additional subnet2
+resource "aws_subnet" "my_subnet_private"{
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.20.2.0/24"
   availability_zone       = var.az
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
-    Name = "tf-subnet-public"
+    Name = "tf-subnet-private"
   }
 }
-*/
+
 
 #Make the subnet accessible(outbound,inbound)
 resource "aws_internet_gateway" "my_igw" {
@@ -50,4 +49,22 @@ resource "aws_route" "my_route" {
 resource "aws_route_table_association" "my_link" {
   subnet_id      = aws_subnet.my_subnet.id
   route_table_id = aws_route_table.my_route_table.id
+}
+
+#route table for subnet2 
+resource "aws_route_table" "my_route_table_private"{
+  vpc_id = aws_vpc.my_vpc.id
+  tags = {
+     Name = "tf-rt-private"
+  }
+}
+/*
+resource "aws_route" "my_route_private" {
+  route_table_id         = aws_route_table.my_route_table_private.id
+     destination_cidr_block="0.0.0.0/0"
+    gateway_id      = aws_internet_gateway.my_igw.id  
+}*/
+resource "aws_route_table_association" "my_link_private" {
+  subnet_id      = aws_subnet.my_subnet_private.id
+  route_table_id = aws_route_table.my_route_table_private.id
 }
