@@ -6,26 +6,15 @@ terraform {
       version = "~> 6.0"
     }
   }
-<<<<<<< HEAD
-=======
-}
->>>>>>> origin/main
-
-
   backend "s3" {
     bucket       = "bootcamp-2026-harith" #use existed s3 bucket
     key          = "terraform2/terraform.tfstate"
     region       = "ap-southeast-1"
     use_lockfile = true
   }
-
-
-<<<<<<< HEAD
 }
 
 
-=======
->>>>>>> origin/main
 provider "aws" {
   region = "ap-southeast-1"
 }
