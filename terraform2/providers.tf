@@ -6,6 +6,7 @@ terraform {
       version = "~> 6.0"
     }
   }
+}
 
 
   backend "s3" {
@@ -15,8 +16,6 @@ terraform {
     use_lockfile = true
   }
 
-
-}
 
 provider "aws" {
   region = "ap-southeast-1"
