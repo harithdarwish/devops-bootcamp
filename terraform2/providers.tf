@@ -6,6 +6,10 @@ terraform {
       version = "~> 6.0"
     }
   }
+<<<<<<< HEAD
+=======
+}
+>>>>>>> origin/main
 
 
   backend "s3" {
@@ -16,9 +20,12 @@ terraform {
   }
 
 
+<<<<<<< HEAD
 }
 
 
+=======
+>>>>>>> origin/main
 provider "aws" {
   region = "ap-southeast-1"
 }
