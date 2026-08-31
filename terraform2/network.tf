@@ -9,7 +9,7 @@ resource "aws_vpc" "my_vpc" {
 resource "aws_subnet" "my_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.20.1.0/24"
-  availability_zone       = "ap-southeast-1a"
+  availability_zone       = var.az
   map_public_ip_on_launch = true
   tags = {
     Name = "tf-subnet-public"
@@ -21,7 +21,7 @@ resource "aws_subnet" "my_subnet" {
 resource "aws_subnet" "my_subnet_2"{
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.20.2.0/24"
-  availability_zone       = "ap-southeast-1a"
+  availability_zone       = var.az
   map_public_ip_on_launch = true
   tags = {
     Name = "tf-subnet-public"

@@ -6,7 +6,6 @@ terraform {
       version = "~> 6.0"
     }
   }
-<<<<<<< HEAD
 
 
   backend "s3" {
@@ -17,8 +16,6 @@ terraform {
   }
 
 
-=======
->>>>>>> origin/main
 }
 
 provider "aws" {
