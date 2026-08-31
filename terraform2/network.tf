@@ -21,11 +21,7 @@ resource "aws_subnet" "my_subnet_private"{
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.20.2.0/24"
   availability_zone       = var.az
-<<<<<<< HEAD
   map_public_ip_on_launch = false
-=======
-  map_public_ip_on_launch = true
->>>>>>> origin/main
   tags = {
     Name = "tf-subnet-private"
   }
