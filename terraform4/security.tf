@@ -22,7 +22,10 @@ module "my_sg" {
   }
 
   egress_rules = {
-    all = { cidr_ipv4 = "0.0.0.0/0", ip_protocol = "-1" }
+    all = {
+      cidr_ipv4   = "0.0.0.0/0"
+      ip_protocol = "-1"
+    }
   }
 
   tags = { Name = "tf-vpc-sg" }
