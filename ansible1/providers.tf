@@ -5,6 +5,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 6.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.9"
+    }
   }
   backend "s3" {
     bucket       = "bootcamp-2026-harith" #use existed s3 bucket
@@ -13,7 +17,6 @@ terraform {
     use_lockfile = true
   }
 }
-
 
 provider "aws" {
   region = "ap-southeast-1"
