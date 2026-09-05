@@ -1,3 +1,7 @@
+data "http" "myip" {
+  url = "https://ifconfig.me/ip"
+}
+
 module "my_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 6.0"
@@ -12,6 +16,12 @@ module "my_sg" {
       ip_protocol = "tcp"
       from_port   = 80
       to_port     = 80
+    }
+    ssh = {
+      cidr_ipv4   = "${chomp(data.http.myip.response_body)}/32"
+      ip_protocol = "tcp"
+      from_port   = 22
+      to_port     = 22
     }
   }
 

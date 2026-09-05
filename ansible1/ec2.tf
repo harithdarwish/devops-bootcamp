@@ -12,39 +12,28 @@ data "aws_iam_instance_profile" "my_ssm_profile" {
   name = "EC2-SSM-Role"
 }
 
-data "aws_ssm_parameter" "token" {
-  name = "/devops-bootcamp-2026/tunnel-token"
-}
-
-module "my_server_public" {
+module "node1" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 6.0"
-
-  name                   = "tf-server-public"
+  name                   = "node1"
   ami                    = data.aws_ami.my_ami.id
   instance_type          = "t3.micro"
   subnet_id              = module.my_vpc.public_subnets[0]
   create_security_group  = false
   vpc_security_group_ids = [module.my_sg.id]
-  iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
-
-  user_data = templatefile("userdata.sh", {})
-  tags      = { Name = "tf-server-public" }
+  key_name               = "harith-key"
+  tags                   = { Name = "node1" }
 }
 
-#create private EC2 instance
-module "my_server_private" {
+module "node2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 6.0"
-
-  name                   = "tf-server-private"
+  name                   = "node2"
   ami                    = data.aws_ami.my_ami.id
   instance_type          = "t3.micro"
-  subnet_id              = module.my_vpc.private_subnets[0]
-  /* create_security_group  = false
-  vpc_security_group_ids = [module.my_sg.id] */
-  iam_instance_profile   = data.aws_iam_instance_profile.my_ssm_profile.name
-
-  user_data = templatefile("userdata-tunnel.sh", {tunnel_token = data.aws_ssm_parameter.token.value})
-  tags      = { Name = "tf-server-private" }
+  subnet_id              = module.my_vpc.public_subnets[0]
+  create_security_group  = false
+  vpc_security_group_ids = [module.my_sg.id]
+  key_name               = "harith-key"
+  tags                   = { Name = "node2" }
 }
