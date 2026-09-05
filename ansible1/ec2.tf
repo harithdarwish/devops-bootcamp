@@ -8,9 +8,9 @@ data "aws_ami" "my_ami" {
   }
 }
 
-data "aws_iam_instance_profile" "my_ssm_profile" {
+/*data "aws_iam_instance_profile" "my_ssm_profile" {
   name = "EC2-SSM-Role"
-}
+}*/
 
 module "node1" {
   source  = "terraform-aws-modules/ec2-instance/aws"
