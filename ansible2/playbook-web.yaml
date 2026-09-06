@@ -12,14 +12,17 @@
         name: nginx
         state: started
         enabled: yes
-
       #name: Tulis index.html
       #copy:
       #content: "Ini {{ inventory_hostname }}\n"
       #dest: /var/www/html/index.html
+      #name: Tulis index.html
+      #copy:
+      #content: "{{ site_title }} - {{ inventory_hostname }} - {{ site_owner }}\n"
+      #dest: /var/www/html/index.html
     - name: Tulis index.html
-      copy:
-        content: "{{ site_title }} - {{ inventory_hostname }} - {{ site_owner }}\n"
+      template:
+        src: index.html.j2
         dest: /var/www/html/index.html
 
       vars:
