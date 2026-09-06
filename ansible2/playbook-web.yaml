@@ -1,0 +1,29 @@
+- name: Sediakan web server
+  hosts: nodes
+  become: yes
+  tasks:
+    - name: Pasang nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Hidupkan servis nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+      #name: Tulis index.html
+      #copy:
+      #content: "Ini {{ inventory_hostname }}\n"
+      #dest: /var/www/html/index.html
+
+    - name: Tulis index.html
+      copy:
+        content: "{{ site_title }} - {{ inventory_hostname }} - {{ site_owner }}\n"
+        dest: /var/www/html/index.html
+
+      vars:
+        site_title: Armada Infratify
+        site_owner: Pasukan Platform
+        web_port: 80

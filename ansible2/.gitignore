@@ -1,0 +1,9 @@
+# Terraform working directory & plugins (large binaries)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+*.tfplan
+crash.log
+
