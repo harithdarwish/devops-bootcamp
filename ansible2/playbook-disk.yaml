@@ -8,7 +8,7 @@
       changed_when: partition_grow.rc == 0
       failed_when: partition_grow.rc == 2
 
-    - name: Besarkan filesystem
+    - name: Besarkan filesystems
       command: resize2fs /dev/nvme0n1p1
       register: filesystem_grow
       changed_when: filesystem_grow.stdout != ""
