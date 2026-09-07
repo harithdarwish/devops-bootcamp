@@ -23,6 +23,20 @@ module "my_sg" {
       from_port   = 22
       to_port     = 22
     }
+
+    prometheus = {
+      cidr_ipv4   = "${chomp(data.http.myip.response_body)}/32"
+      ip_protocol = "tcp"
+      from_port   = 9090
+      to_port     = 9090
+    }
+    node_exporter = {
+      cidr_ipv4   = "10.20.0.0/16"
+      ip_protocol = "tcp"
+      from_port   = 9100
+      to_port     = 9100
+    }
+    
   }
 
   egress_rules = {
