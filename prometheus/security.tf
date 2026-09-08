@@ -31,7 +31,8 @@ module "my_sg" {
       to_port     = 9090
     }
     node_exporter = {
-      cidr_ipv4   = "10.20.0.0/16"
+      cidr_ipv4   = "10.20.0.0/16" #Restricts access to internal VPC traffic only
+      #cidr_ipv4   = "0.0.0.0/0" #allow external access to Node Exporter metrics on port 9100. violates security best practices
       ip_protocol = "tcp"
       from_port   = 9100
       to_port     = 9100
